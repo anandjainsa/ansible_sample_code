@@ -1,0 +1,14 @@
+---
+# This playbook will install Nginx
+# Authoer: Anand Jain
+# Date: 29-May-2019
+
+- name: Nginx Server
+  hosts:  myhost
+  gather_facts: False
+  become: yes
+  become_method: sudo
+
+  roles:
+   - nginx
+   - php

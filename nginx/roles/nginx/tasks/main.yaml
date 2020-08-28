@@ -1,0 +1,12 @@
+---
+- name: Install nginx web server
+  apt: 
+    name=nginx 
+    state=latest 
+    update_cache=true
+
+- name: Setup nginx conf
+  template:
+    src=default.tpl
+    dest=/etc/nginx/sites-available/default
+  notify: restart nginx

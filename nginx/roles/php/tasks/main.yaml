@@ -1,0 +1,24 @@
+---
+- name: Install PHP Packages
+  apt: 
+    name={{ item }}
+    update_cache=yes 
+    state=latest
+  loop: [ 'php7.2', 'php7.2-fpm' ]
+
+- name: Cleaning data
+  apt: 
+    name=apache2
+    state=absent
+
+- name: Creating PHP Index file
+  template:
+    src=index.php.tpl
+    dest=/var/www/html/index.php
+  notify: restart nginx
+
+
+- name: Copying Index.html template
+  template:
+    src=index.html
+    dest=/var/www/html/index.html

@@ -1,0 +1,2 @@
+[myhost]
+192.168.33.19 ansible_user=vagrant ansible_ssh_pass=vagrant
