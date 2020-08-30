@@ -1,0 +1,43 @@
+---
+# tasks file for my-role
+- name: Install nginx web server
+  apt:
+    name=nginx
+    state=latest
+    update_cache=true
+
+- name: Setup nginx conf
+  template:
+    src=default.j2
+    dest=/etc/nginx/sites-available/default
+  notify: restart nginx
+
+- name: Install PHP Packages
+  apt:
+    name={{ item }}
+    update_cache=yes
+    state=latest
+  loop: [ 'php7.2', 'php7.2-fpm', 'curl' ]
+
+- name: Cleaning data
+  apt:
+    name=apache2
+    state=absent
+
+- name: Removing Default files
+  file:
+    path=/var/www/html/index.nginx-debian.html
+    state=absent
+
+- name: Removing Default files
+  file:
+    path=/var/www/html/index.html
+    state=absent
+
+- name: Creating PHP Index file
+  template:
+    src=index.php.j2
+    dest=/var/www/html/index.php
+    mode=0777
+  notify: restart nginx
+  notify: restart php7.2-fpm
