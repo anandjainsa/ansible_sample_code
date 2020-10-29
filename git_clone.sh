@@ -9,8 +9,9 @@ function clone_pull {
   else
     mkdir -p $2 && cd $2
     git clone "$1"
+    cd -
   fi
 }
 
-
+#clone_pull <GIT_URL> <PATH>
 clone_pull https://github.com/anandjainsa/ansible_sample_code anandjain
