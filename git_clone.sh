@@ -14,4 +14,4 @@ function clone_pull {
 }
 #nothing changed
 #clone_pull <GIT_URL> <PATH>
-clone_pull https://github.com/anandjainsa/ansible_sample_code anandjain
+clone_pull https://github.com/venky2575/ansible_sample_code anandjain
