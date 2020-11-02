@@ -4,8 +4,6 @@ function clone_pull {
   DIRECTORY=$(basename "$1" .git)
   if [ -d "$2/$DIRECTORY" ]; then
     cd "$2/$DIRECTORY"
-    echo "this $2/$DIRECTORY"
-
     if [ -d ".git" ]; then
       git pull origin master
       cd -
